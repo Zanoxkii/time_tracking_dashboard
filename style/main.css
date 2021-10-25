@@ -1,9 +1,26 @@
+@font-face {
+    font-family: rubik;
+    src: url("../fonts/Rubik-VariableFont_wght.ttf");
+}
+
 :root {
+    --bg-color: #0d1323;
+    --primary-color: #1d204b;
     --primary-blue: hsl(246, 80%, 60%);
-    --primary-light-red: hsl(15, 100%, 70%);    
+    --primary-light-red: hsl(15, 100%, 70%);
     --primary-soft-blue: hsl(195, 74%, 62%);
     --primary-light-red: hsl(348, 100%, 68%);
     --primary-lime-green: hsl(145, 58%, 55%);
     --primary-violet: hsl(264, 64%, 52%);
     --primary-soft-orange: hsl(43, 84%, 65%);
+    --font: rubik;
+}
+
+body {
+    margin: 0;
+    background-color: var(--bg-color);
+}
+
+.container {
+    display: grid;
 }
