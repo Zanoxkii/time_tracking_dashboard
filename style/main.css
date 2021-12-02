@@ -7,7 +7,7 @@
     --bg-color: #0d1323;
     --primary-color: #1d204b;
     --primary-blue: hsl(246, 80%, 60%);
-    --primary-light-red: hsl(15, 100%, 70%);
+    --primary-light-orange: hsl(15, 100%, 70%);
     --primary-soft-blue: hsl(195, 74%, 62%);
     --primary-light-red: hsl(348, 100%, 68%);
     --primary-lime-green: hsl(145, 58%, 55%);
@@ -16,11 +16,15 @@
     --font: rubik;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     background-color: var(--bg-color);
 }
 
-h1, h2, h3, p, a {
+h1, h2, h3, h4, h5, p, a {
     font-family: rubik;
     color: rgba(255, 255, 255, 0.4);
     font-weight: 300;
@@ -30,64 +34,234 @@ h1, h2, h3, p, a {
 }
 
 h3 {
-    font-size: clamp(0.5vw, 24px, 5rem);
+    font-size: 24px;
 }
 
 .active {
     color: white;
+    font-weight: 400;
 }
 
 .container {
-    display: grid;
+    display: flex;
     justify-content: center;
-    gap: 2rem;
-}
-
-@media screen and (min-width: 376px) {
-    .container {
-        justify-content: start;
-    }
-}
-
-.card {
-    width: 90vw;
-    border-radius: 10px;
-    background-color: var(--primary-color);
-}
-
-@media screen and (min-width: 376px) {
-    .card {
-        width: 180px;
-        height: 60vh;
-        display: grid;
-        grid-auto-flow: row;
-    }
-}
-
-.card-header {
-    border-radius: 10px;
-    background-color: var(--primary-blue);
-    display: grid;
     align-items: center;
-    grid-template-columns: 30% 60%;
-    padding: 2rem 1.5rem;
+    height: 98vh;
+
+}
+
+.card-row {
+    height: 70%;
+    width: 70%;
+    display: grid;
+    grid-row: 2;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    gap: 3rem;
+}
+
+.card, .card-profile {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.card-profile {
+    grid-row: 1 / span 2;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+.card-profile .card-header {
+    z-index: 1;
+    height: 70%;
+    padding: 2rem;
+    background-color: var(--primary-blue);
+    border-radius: 10px;
 }
 
 .profile-pic {
-    width: 70px;
+    width: clamp(5vh, 100px, 10vh);
     border: 3px solid white;
     border-radius: 50%;
+    margin-bottom: 2rem;
 }
 
-.card-body {
-    border-radius: 0 0 10px 10px;
-    height: 70px;
-    display: grid;
-    grid-template-columns: 33% 33% 33%;
-    align-items: center;
+.profile-name p {
+    font-size: 12px;
 }
 
-.card-body a {
+.profile-name h3 {
+    color: white;
+    font-size: max(5vh, 0.5em);
+    line-height: 1em;  
+}
+
+.card-profile .card-body{
+    position: absolute;
+    top: 65%;
+    z-index: 0;
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-evenly;
+    padding-left: 2rem;
+    padding-top: 2rem;
+    background-color: var(--primary-color);
+    border-radius: 0px 0px 10px 10px;
+}
+
+a {
     text-decoration: none;
-    text-align: center;
+}
+
+a:hover {
+    color: white;
+    cursor: pointer;
+}
+
+.card {
+    position: relative;
+    height: 100%;
+}
+
+.card .card-header {
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 40%;
+    border-radius: 10px 10px 0px 0px;
+    background-repeat: no-repeat;
+    background-position: right 10% bottom 100%;
+    background-size: 22%;
+
+}
+
+.card--1 .card-header {
+    background-color: var(--primary-light-orange);
+    background-image: url("../images/icon-work.svg");
+}
+
+.card--2 .card-header {
+    background-color: var(--primary-soft-blue);
+    background-image: url("../images/icon-play.svg");
+}
+
+.card--3 .card-header {
+    background-color: var(--primary-light-red);
+    background-image: url("../images/icon-study.svg");
+}
+
+.card--4 .card-header {
+    background-color: var(--primary-lime-green);
+    background-image: url("../images/icon-exercise.svg");
+}
+
+.card--5 .card-header {
+    background-color: var(--primary-violet);
+    background-image: url("../images/icon-social.svg");
+}
+
+.card--6 .card-header {
+    background-color: var(--primary-soft-orange);
+    background-image: url("../images/icon-self-care.svg");
+}
+
+.card .card-body {
+    padding: 1.5rem 2rem;
+    margin-top: 15%;
+    height: 85%;
+    width: 100%;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card .card-body:hover {
+    background-color: #34397b;
+    cursor: pointer;
+}
+
+.card-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+h4 {
+    color: white;
+    font-weight: 500;
+    font-size: clamp(2vh, 22px, 5vh);
+}
+
+.stat {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.stat h5 {
+    color: white;
+    font-size: clamp(7vh, 48px, 10vh);
+}
+
+.stat p {
+    font-size: clamp(2vh, 12px, 5vh);
+}
+
+@media screen and (max-width: 930px) {
+    .card-row {
+        grid-row: 7;
+        grid-column: 1;
+        grid-template-rows: repeat(7, 1fr);
+        grid-template-columns: 1fr;
+    }
+
+    .card-profile {
+        grid-row: 1 / span 5;
+        border-radius: 10px;
+        position: relative;
+    }
+
+    .card-profile .card-header {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        padding: 0;
+    }
+
+    .profile-pic {
+        margin: 0;
+    }
+
+    .profile-name h3 {
+        font-size: 20px;
+    }
+
+    .card-profile .card-body {
+        flex-direction: row;
+        padding: 0;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .stat {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .stat h5 {
+        color: white;
+        font-size: clamp(4vh, 30px, 10vh);
+    }
+    
+    .stat p {
+        font-size: clamp(1vh, 10px, 5vh);
+    }
 }
